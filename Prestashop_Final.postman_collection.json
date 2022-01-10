@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "7490becf-23df-4964-83bc-1c61a1038002",
+		"name": "Prestashop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clothes",
+			"request": {
+				"auth": {
+					"type": "apikey"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.209.254.152/3-clothes",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"3-clothes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accessories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.209.254.152/6-accessories",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"6-accessories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Art",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.209.254.152/9-art",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"9-art"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
