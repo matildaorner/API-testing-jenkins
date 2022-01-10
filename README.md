@@ -2,5 +2,5 @@
 
 School assignment using Postman/Newman/Jmeter/Jenkins for learning CI/CD
 
-Karl, Matilda, Majk, Daniel List
+Karl, Matilda, Mike, Daniel, Lisa
 © 2021
