@@ -1,15 +1,41 @@
 {
 	"info": {
-		"_postman_id": "7490becf-23df-4964-83bc-1c61a1038002",
+		"_postman_id": "990d5cd1-674a-4502-8c56-b0f87b4a5449",
 		"name": "Prestashop",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Clothes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
-					"type": "apikey"
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
 				},
 				"method": "GET",
 				"header": [],
@@ -31,6 +57,19 @@
 		},
 		{
 			"name": "Accessories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -52,6 +91,19 @@
 		},
 		{
 			"name": "Art",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -66,6 +118,102 @@
 					],
 					"path": [
 						"9-art"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"See that product has the same name\", () => {\r",
+							"    pm.expect(response.products[0].name).to.equal(\"Hummingbird printed t-shirt\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"See that we have a name in string representation\", () => {\r",
+							"    pm.expect(response.products[0].name).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "ws_key",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "FT8P5R45LP5WM24TNIP2VV314EX2IKIN",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://104.209.254.152/api/search/?language=1&query=t-shirt&output_format=JSON&display=full",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"api",
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "1"
+						},
+						{
+							"key": "query",
+							"value": "t-shirt"
+						},
+						{
+							"key": "output_format",
+							"value": "JSON"
+						},
+						{
+							"key": "display",
+							"value": "full"
+						}
 					]
 				}
 			},

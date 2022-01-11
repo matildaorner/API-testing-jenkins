@@ -1,0 +1,83 @@
+jan. 11, 2022 9:17:28 FM hudson.remoting.jnlp.Main createEngine
+INFO: Setting up agent: Grupp1
+jan. 11, 2022 9:17:28 FM hudson.remoting.jnlp.Main$CuiListener <init>
+INFO: Jenkins agent is running in headless mode.
+jan. 11, 2022 9:17:28 FM hudson.remoting.Engine startEngine
+INFO: Using Remoting version: 4.10
+jan. 11, 2022 9:17:28 FM org.jenkinsci.remoting.engine.WorkDirManager initializeWorkDir
+INFO: Using /Users/Lisa/Desktop/Yh TT 2021/GitHub/API-testing-jenkins/misc/C:\Jenkins\var/remoting as a remoting work directory
+jan. 11, 2022 9:17:28 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Locating server among [http://52.170.65.192:8080/]
+jan. 11, 2022 9:17:28 FM org.jenkinsci.remoting.engine.JnlpAgentEndpointResolver resolve
+INFO: Remoting server accepts the following protocols: [JNLP4-connect, Ping]
+jan. 11, 2022 9:17:28 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Agent discovery successful
+  Agent address: 52.170.65.192
+  Agent port:    50000
+  Identity:      e7:23:7e:0d:7e:8e:28:1f:1a:d6:19:1e:24:28:ee:19
+jan. 11, 2022 9:17:28 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Handshaking
+jan. 11, 2022 9:17:28 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connecting to 52.170.65.192:50000
+jan. 11, 2022 9:17:28 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Trying protocol: JNLP4-connect
+jan. 11, 2022 9:17:29 FM org.jenkinsci.remoting.protocol.impl.BIONetworkLayer$Reader run
+INFO: Waiting for ProtocolStack to start.
+jan. 11, 2022 9:17:29 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Remote identity confirmed: e7:23:7e:0d:7e:8e:28:1f:1a:d6:19:1e:24:28:ee:19
+jan. 11, 2022 9:17:29 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connected
+jan. 11, 2022 9:29:00 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Terminated
+jan. 11, 2022 9:29:10 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Performing onReconnect operation.
+jan. 11, 2022 9:29:10 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: onReconnect operation failed.
+jan. 11, 2022 9:29:10 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Locating server among [http://52.170.65.192:8080/]
+jan. 11, 2022 9:29:10 FM org.jenkinsci.remoting.engine.JnlpAgentEndpointResolver resolve
+INFO: Remoting server accepts the following protocols: [JNLP4-connect, Ping]
+jan. 11, 2022 9:29:10 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Agent discovery successful
+  Agent address: 52.170.65.192
+  Agent port:    50000
+  Identity:      e7:23:7e:0d:7e:8e:28:1f:1a:d6:19:1e:24:28:ee:19
+jan. 11, 2022 9:29:10 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Handshaking
+jan. 11, 2022 9:29:10 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connecting to 52.170.65.192:50000
+jan. 11, 2022 9:29:10 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Trying protocol: JNLP4-connect
+jan. 11, 2022 9:29:10 FM org.jenkinsci.remoting.protocol.impl.BIONetworkLayer$Reader run
+INFO: Waiting for ProtocolStack to start.
+jan. 11, 2022 9:29:11 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Remote identity confirmed: e7:23:7e:0d:7e:8e:28:1f:1a:d6:19:1e:24:28:ee:19
+jan. 11, 2022 9:29:11 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connected
+jan. 11, 2022 9:29:36 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Terminated
+jan. 11, 2022 9:29:46 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Performing onReconnect operation.
+jan. 11, 2022 9:29:46 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: onReconnect operation failed.
+jan. 11, 2022 9:29:46 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Locating server among [http://52.170.65.192:8080/]
+jan. 11, 2022 9:29:46 FM org.jenkinsci.remoting.engine.JnlpAgentEndpointResolver resolve
+INFO: Remoting server accepts the following protocols: [JNLP4-connect, Ping]
+jan. 11, 2022 9:29:46 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Agent discovery successful
+  Agent address: 52.170.65.192
+  Agent port:    50000
+  Identity:      e7:23:7e:0d:7e:8e:28:1f:1a:d6:19:1e:24:28:ee:19
+jan. 11, 2022 9:29:46 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Handshaking
+jan. 11, 2022 9:29:46 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connecting to 52.170.65.192:50000
+jan. 11, 2022 9:29:46 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Trying protocol: JNLP4-connect
+jan. 11, 2022 9:29:46 FM org.jenkinsci.remoting.protocol.impl.BIONetworkLayer$Reader run
+INFO: Waiting for ProtocolStack to start.
+jan. 11, 2022 9:29:47 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Remote identity confirmed: e7:23:7e:0d:7e:8e:28:1f:1a:d6:19:1e:24:28:ee:19
+jan. 11, 2022 9:29:47 FM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connected
