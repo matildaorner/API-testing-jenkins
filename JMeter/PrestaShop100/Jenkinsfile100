@@ -5,9 +5,9 @@ pipeline {
     agent {    label 'Grupp1JMeter'    }
     
     stages{
-        stage('Run Jmeter tests') {
+        stage('Run PrestaShop 100 threads/1min') {
             steps {
-                bat "${JMETER_HOME}\\bin\\jmeter.bat -Jjmeter.save.saveservice.output_format=xml -n -t ${JMETER_HOME}\\bin\\PrestashopTestplan.jmx -l jmeter_report.jtl"
+                bat "${JMETER_HOME}\\bin\\jmeter.bat -Jjmeter.save.saveservice.output_format=xml -n -t ${JMETER_HOME}\\bin\\PrestashopTestplan100.jmx -l jmeter_report.jtl"
                 perfReport 'jmeter_report.jtl'
             }
         }
