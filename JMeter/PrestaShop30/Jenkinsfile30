@@ -12,4 +12,9 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            junit allowEmptyResults: true, testResults: "${WORKSPACE}\\test-results50\\*.xml"                      
+        }
+    }
 }
