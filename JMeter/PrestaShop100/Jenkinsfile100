@@ -1,5 +1,11 @@
+pipeline {
+    environment {
+            PATH = "C:\\WINDOWS\\SYSTEM32;${JAVA_HOME}\\bin"
+    }
+    agent {    label 'Grupp1JMeter'    }
+    
     stages{
-        stage('Run PrestaShop 100 threads/1min') {
+        stage('Run PrestaShop 30 threads/10min') {
             steps {
                 bat "${JMETER_HOME}\\bin\\jmeter.bat -Jjmeter.save.saveservice.output_format=xml -n -t ${WORKSPACE}\\JMeter\\PrestaShop100\\PrestashopTestplan_100.jmx -l ${WORKSPACE}\\JMeter\\PrestaShop100\\jmeter_report.jtl"
                 perfReport 'jmeter_report.jtl'
@@ -7,8 +13,8 @@
         }
     }
     post {
-        success {                     
-            junit allowEmptyResults: true, testResults: "${WORKSPACE}\\test-results100\\*.xml"                       
+        success {
+            junit allowEmptyResults: true, testResults: "${WORKSPACE}\\test-results100\\*.xml"                        
         }
     }
-
+}
