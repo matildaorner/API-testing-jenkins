@@ -11,4 +11,4 @@
             junit allowEmptyResults: true, testResults: "${WORKSPACE}\\test-results100\\*.xml"                       
         }
     }
-}
+
