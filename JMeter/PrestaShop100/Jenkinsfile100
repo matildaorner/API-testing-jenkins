@@ -8,7 +8,7 @@
     }
     post {
         success {                     
-            junit allowEmptyResults: true, testResults: "${WORKSPACE}\\test-results\\*.xml"                       
+            junit allowEmptyResults: true, testResults: "${WORKSPACE}\\test-results100\\*.xml"                       
         }
     }
 }
