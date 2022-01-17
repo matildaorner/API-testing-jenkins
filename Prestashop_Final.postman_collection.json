@@ -1,12 +1,691 @@
 {
 	"info": {
-		"_postman_id": "990d5cd1-674a-4502-8c56-b0f87b4a5449",
-		"name": "Prestashop",
+		"_postman_id": "6339434f-6784-4358-8949-d1421045c6b2",
+		"name": "Prestashop_Final",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Clothes",
+			"name": "Create Customer",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let firstnames = ['Maziar','Abdul','Kalle-Johan','Mys','Anna','Emma','Lisa','Daniel','Mike','Karl','Mathilda','Jonas','Ulf','Fake','Name','Idiot','Laban','T-Rex','Voi','Smor','Heippa','List','Roma','Kamini','Filip','Lex','Azra'];\r",
+							"let lastnames = ['Svensson','Fakename','Lolsson','Satan','Gustafsson','Eriksson','UniqueName','Andersson','Sventon','Breisel','Sutton','Saltzman','Shuzen', 'Sepperin','Hellforce','Ekman','Aspegren','Rasmussen','Toivonen','Visnamathan','Kettunen','Stahl','Munjal','Folke'];\r",
+							"\r",
+							"let firstname = firstnames[Math.floor(Math.random() * (firstnames.length - 1))];\r",
+							"let lastname = lastnames[Math.floor(Math.random() * (lastnames.length - 1))];\r",
+							"let email = firstname + \".\" + lastname + \"@fakemail.se\";\r",
+							"\r",
+							"pm.environment.set(\"firstName\", firstname);\r",
+							"pm.environment.set(\"lastName\", lastname);\r",
+							"pm.environment.set(\"email\", email.toLowerCase());"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"pm.environment.set(\"customerId\", +response.customers[0].id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "488MLB9QEFRXGLJNQBTYW4JDP2MIJJJS",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "ws_key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<prestashop xmlns:xlink=\"http://www.w3.org/1999/xlink\">\r\n  <customer>\r\n    <id><![CDATA[]]></id>\r\n    <id_default_group><![CDATA[3]]></id_default_group>\r\n    <id_lang><![CDATA[1]]></id_lang>\r\n    <newsletter_date_add><![CDATA[]]></newsletter_date_add>\r\n    <ip_registration_newsletter><![CDATA[]]></ip_registration_newsletter>\r\n    <last_passwd_gen><![CDATA[]]></last_passwd_gen>\r\n    <secure_key><![CDATA[]]></secure_key>\r\n    <deleted><![CDATA[]]></deleted>\r\n    <passwd><![CDATA[lol123]]></passwd>\r\n    <lastname><![CDATA[{{firstName}}]]></lastname>\r\n    <firstname><![CDATA[{{lastName}}]]></firstname>\r\n    <email><![CDATA[{{email}}]]></email>\r\n    <id_gender><![CDATA[1]]></id_gender>\r\n    <birthday><![CDATA[1965-01-01]]></birthday>\r\n    <newsletter><![CDATA[1]]></newsletter>\r\n    <optin><![CDATA[1]]></optin>\r\n    <website><![CDATA[]]></website>\r\n    <company><![CDATA[]]></company>\r\n    <siret><![CDATA[]]></siret>\r\n    <customer_privacy><![CDATA[1]]></customer_privacy>\r\n    <psgdpr><![CDATA[1]]></psgdpr>\r\n    <ape><![CDATA[]]></ape>\r\n    <outstanding_allow_amount><![CDATA[]]></outstanding_allow_amount>\r\n    <show_public_prices><![CDATA[]]></show_public_prices>\r\n    <id_risk><![CDATA[]]></id_risk>\r\n    <max_payment_days><![CDATA[]]></max_payment_days>\r\n    <active><![CDATA[1]]></active>\r\n    <note><![CDATA[]]></note>\r\n    <is_guest><![CDATA[]]></is_guest>\r\n    <id_shop><![CDATA[1]]></id_shop>\r\n    <id_shop_group><![CDATA[0]]></id_shop_group>\r\n    <date_add><![CDATA[]]></date_add>\r\n    <date_upd><![CDATA[]]></date_upd>\r\n    <reset_password_token><![CDATA[]]></reset_password_token>\r\n    <reset_password_validity><![CDATA[2022-02-02]]></reset_password_validity>\r\n    <associations>\r\n      <groups>\r\n        <group>\r\n          <id><![CDATA[2]]></id>\r\n        </group>\r\n      </groups>\r\n    </associations>\r\n  </customer>\r\n</prestashop>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://104.209.254.152/api/customers/?output_format=JSON&display=full",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"api",
+						"customers",
+						""
+					],
+					"query": [
+						{
+							"key": "output_format",
+							"value": "JSON"
+						},
+						{
+							"key": "display",
+							"value": "full"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let productsIds = pm.response.json();\r",
+							"\r",
+							"pm.test(\"See that status is OK\", () => {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,202,204]);\r",
+							"});\r",
+							"\r",
+							"// Build array of all items that has stock\r",
+							"let currentStock = [];\r",
+							"\r",
+							"pm.environment.set(\"productIdInStock\", JSON.stringify(productsIds));\r",
+							"pm.environment.set(\"counter\", \"0\");\r",
+							"pm.environment.set(\"currentStock\", currentStock);\r",
+							"//console.log(pm.environment.get(\"productIdInStock\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "319B4R11VVY17EDZL6YFDZ2XFQLEGE8D",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "ws_key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.209.254.152/api/products/?output_format=JSON&sort=id_ASC",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"api",
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "display",
+							"value": "full",
+							"disabled": true
+						},
+						{
+							"key": "output_format",
+							"value": "JSON"
+						},
+						{
+							"key": "sort",
+							"value": "id_ASC"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Products In Stock",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let counter = +pm.environment.get(\"counter\");\r",
+							"let tempId = JSON.parse(pm.environment.get(\"productIdInStock\"));\r",
+							"let id = tempId.products[counter];\r",
+							"pm.environment.set(\"idToCheck\", id.id);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Get counter again\r",
+							"let counter = +pm.environment.get(\"counter\");\r",
+							"let tempId = JSON.parse(pm.environment.get(\"productIdInStock\"));\r",
+							"let currentStock = pm.environment.get(\"currentStock\");\r",
+							"\r",
+							"let productInStock = pm.response.json();\r",
+							"let id = tempId.products[counter];\r",
+							"\r",
+							"pm.test(\"See that status is OK\", () => {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,202,204]);\r",
+							"});\r",
+							"\r",
+							"//console.log(`${id.id} : ${+productInStock.stock_available.quantity}`);\r",
+							"\r",
+							"// If stock exists add id to array\r",
+							"if(+productInStock.stock_available.quantity > 0) {\r",
+							"    currentStock.push(id.id);\r",
+							"}\r",
+							"\r",
+							"counter++;\r",
+							"\r",
+							"// Loop the test so that we can get all products in stock\r",
+							"if(tempId.products[counter]) {\r",
+							"    pm.environment.set(\"idToCheck\", id.id);\r",
+							"    pm.environment.set(\"counter\", counter);\r",
+							"    pm.environment.set(\"currentStock\", currentStock);\r",
+							"    postman.setNextRequest(\"Get All Products In Stock\");\r",
+							"} else {\r",
+							"    console.log(\"No more products\");\r",
+							"    counter = 0;\r",
+							"    pm.environment.set(\"counter\", counter)\r",
+							"    console.log(`All product id with stock: ${currentStock}`);\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Y6KI7BNQX5IF6YLAWQH8L2C6RMRS8L67",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "ws_key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.209.254.152/api/stock_availables/{{idToCheck}}/?output_format=JSON",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"api",
+						"stock_availables",
+						"{{idToCheck}}",
+						""
+					],
+					"query": [
+						{
+							"key": "output_format",
+							"value": "JSON"
+						},
+						{
+							"key": "display",
+							"value": "full",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create A Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"let cartId = response.carts[0].id;\r",
+							"\r",
+							"//console.log(cartId);\r",
+							"\r",
+							"pm.test(\"See that status code is OK\", () => {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202,204]);\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"cartId\", cartId);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let currentStockArray = pm.environment.get(\"currentStock\");\r",
+							"\r",
+							"let xmldata = \"\";\r",
+							"\r",
+							"for (currentStockId of currentStockArray) {\r",
+							"    xmldata = xmldata + `\r",
+							"        <cart_row>\r",
+							"          <id_product><![CDATA[${currentStockId}]]></id_product>\r",
+							"          <id_product_attribute><![CDATA[]]></id_product_attribute>\r",
+							"          <id_address_delivery><![CDATA[]]></id_address_delivery>\r",
+							"          <id_customization><![CDATA[]]></id_customization>\r",
+							"          <quantity><![CDATA[1]]></quantity>\r",
+							"        </cart_row>`;\r",
+							"}\r",
+							"\r",
+							"pm.environment.set(\"xmldata\", xmldata);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "ws_key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "N3GURVIGKHCY725K9YFEMESRXERVAJY6",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n<prestashop xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n  <cart>\n    <id><![CDATA[]]></id>\n    <id_address_delivery><![CDATA[92]]></id_address_delivery>\n    <id_address_invoice><![CDATA[92]]></id_address_invoice>\n    <id_currency><![CDATA[1]]></id_currency>\n    <id_customer><![CDATA[{{customerId}}]]></id_customer>\n    <id_guest><![CDATA[]]></id_guest>\n    <id_lang><![CDATA[1]]></id_lang>\n    <id_shop_group><![CDATA[]]></id_shop_group>\n    <id_shop><![CDATA[]]></id_shop>\n    <id_carrier><![CDATA[2]]></id_carrier>\n    <recyclable><![CDATA[]]></recyclable>\n    <gift><![CDATA[]]></gift>\n    <gift_message><![CDATA[]]></gift_message>\n    <mobile_theme><![CDATA[]]></mobile_theme>\n    <delivery_option><![CDATA[]]></delivery_option>\n    <secure_key><![CDATA[]]></secure_key>\n    <allow_seperated_package><![CDATA[]]></allow_seperated_package>\n    <date_add><![CDATA[]]></date_add>\n    <date_upd><![CDATA[]]></date_upd>\n    <associations>\n      <cart_rows>\n        {{xmldata}}\n      </cart_rows>\n    </associations>\n  </cart>\n</prestashop>"
+				},
+				"url": {
+					"raw": "http://104.209.254.152/api/carts/?display=full&output_format=JSON&id_currency=1&id_lang=1",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"api",
+						"carts",
+						""
+					],
+					"query": [
+						{
+							"key": "display",
+							"value": "full"
+						},
+						{
+							"key": "output_format",
+							"value": "JSON"
+						},
+						{
+							"key": "id_currency",
+							"value": "1"
+						},
+						{
+							"key": "id_lang",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"See that status code is OK\", () => {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202,204]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "N3GURVIGKHCY725K9YFEMESRXERVAJY6",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "ws_key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.209.254.152/api/carts/{{cartId}}?output_format=JSON&id_lang=1&id_currency=1",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"api",
+						"carts",
+						"{{cartId}}"
+					],
+					"query": [
+						{
+							"key": "output_format",
+							"value": "JSON"
+						},
+						{
+							"key": "id_lang",
+							"value": "1"
+						},
+						{
+							"key": "id_currency",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create address",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"See that status code is OK\", () => {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202,204]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Y16G7WIHVK8WQDC42F1LL77FX5HBU3MD",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "ws_key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<prestashop xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n  <address>\n    <id><![CDATA[]]></id>\n    <id_customer><![CDATA[{{customerId}}]]></id_customer>\n    <id_manufacturer><![CDATA[]]></id_manufacturer>\n    <id_supplier><![CDATA[]]></id_supplier>\n    <id_warehouse><![CDATA[]]></id_warehouse>\n    <id_country><![CDATA[21]]></id_country>\n    <id_state><![CDATA[8]]></id_state>\n    <alias><![CDATA[My address]]></alias>\n    <company><![CDATA[My company]]></company>\n    <lastname><![CDATA[{{lastName}}]]></lastname>\n    <firstname><![CDATA[{{firstName}}]]></firstname>\n    <vat_number><![CDATA[]]></vat_number>\n    <address1><![CDATA[Street 1]]></address1>\n    <address2><![CDATA[]]></address2>\n    <postcode><![CDATA[90201]]></postcode>\n    <city><![CDATA[Beverly Hills]]></city>\n    <other><![CDATA[]]></other>\n    <phone><![CDATA[555555]]></phone>\n    <phone_mobile><![CDATA[]]></phone_mobile>\n    <dni><![CDATA[]]></dni>\n    <deleted><![CDATA[]]></deleted>\n    <date_add><![CDATA[]]></date_add>\n    <date_upd><![CDATA[]]></date_upd>\n  </address>\n</prestashop>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://104.209.254.152/api/addresses/?display=full&output_format=JSON",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"api",
+						"addresses",
+						""
+					],
+					"query": [
+						{
+							"key": "display",
+							"value": "full"
+						},
+						{
+							"key": "output_format",
+							"value": "JSON"
+						},
+						{
+							"key": "id_customer",
+							"value": "507",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"See that status code is OK\", () => {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202,204]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "ws_key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.209.254.152/api/customers/{{customerId}}?output_format=JSON",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"api",
+						"customers",
+						"{{customerId}}"
+					],
+					"query": [
+						{
+							"key": "id_customer",
+							"value": "507",
+							"disabled": true
+						},
+						{
+							"key": "output_format",
+							"value": "JSON"
+						},
+						{
+							"key": "display",
+							"value": "full",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"See that status code is OK\", () => {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202,204]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "N3GURVIGKHCY725K9YFEMESRXERVAJY6",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "ws_key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://104.209.254.152/api/carts/{{cartId}}",
+					"protocol": "http",
+					"host": [
+						"104",
+						"209",
+						"254",
+						"152"
+					],
+					"path": [
+						"api",
+						"carts",
+						"{{cartId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer",
 			"event": [
 				{
 					"listen": "test",
@@ -15,6 +694,7 @@
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});",
+							"",
 							""
 						],
 						"type": "text/javascript"
@@ -27,20 +707,29 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4",
+							"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI",
 							"type": "string"
 						},
 						{
 							"key": "key",
-							"value": "Authorization",
+							"value": "ws_key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
 							"type": "string"
 						}
 					]
 				},
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
 				"url": {
-					"raw": "http://104.209.254.152/3-clothes",
+					"raw": "http://104.209.254.152/api/customers/{{customerId}}",
 					"protocol": "http",
 					"host": [
 						"104",
@@ -49,82 +738,16 @@
 						"152"
 					],
 					"path": [
-						"3-clothes"
+						"api",
+						"customers",
+						"{{customerId}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Accessories",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://104.209.254.152/6-accessories",
-					"protocol": "http",
-					"host": [
-						"104",
-						"209",
-						"254",
-						"152"
-					],
-					"path": [
-						"6-accessories"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Art",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://104.209.254.152/9-art",
-					"protocol": "http",
-					"host": [
-						"104",
-						"209",
-						"254",
-						"152"
-					],
-					"path": [
-						"9-art"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Search",
+			"name": "Search for Jacket",
 			"event": [
 				{
 					"listen": "test",
@@ -133,7 +756,7 @@
 							"let response = pm.response.json();\r",
 							"\r",
 							"pm.test(\"See that product has the same name\", () => {\r",
-							"    pm.expect(response.products[0].name).to.equal(\"Hummingbird printed t-shirt\");\r",
+							"    pm.expect(response.products[0].name).to.equal(\"Jacket\");\r",
 							"});\r",
 							"\r",
 							"pm.test(\"See that we have a name in string representation\", () => {\r",
@@ -148,18 +771,10 @@
 					}
 				}
 			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"auth": {
 					"type": "apikey",
 					"apikey": [
-						{
-							"key": "in",
-							"value": "query",
-							"type": "string"
-						},
 						{
 							"key": "key",
 							"value": "ws_key",
@@ -169,22 +784,18 @@
 							"key": "value",
 							"value": "FT8P5R45LP5WM24TNIP2VV314EX2IKIN",
 							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
 						}
 					]
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://104.209.254.152/api/search/?language=1&query=t-shirt&output_format=JSON&display=full",
+					"raw": "http://104.209.254.152/api/search?language=1&query=jacket&output_format=JSON&display=full",
 					"protocol": "http",
 					"host": [
 						"104",
@@ -194,8 +805,7 @@
 					],
 					"path": [
 						"api",
-						"search",
-						""
+						"search"
 					],
 					"query": [
 						{
@@ -204,7 +814,7 @@
 						},
 						{
 							"key": "query",
-							"value": "t-shirt"
+							"value": "jacket"
 						},
 						{
 							"key": "output_format",
