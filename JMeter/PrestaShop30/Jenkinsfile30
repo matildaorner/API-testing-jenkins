@@ -7,7 +7,7 @@ pipeline {
     stages{
         stage('Run PrestaShop 30 threads/10min') {
             steps {
-                bat "${JMETER_HOME}\\bin\\jmeter.bat -Jjmeter.save.saveservice.output_format=xml -n -t ${JMETER_REPO}\\JMeter\\PrestaShop30\\PrestashopTestplan_30.jmx -l ${JMETER_REPO}\\JMeter\\jmeter_report.jtl"
+                bat "${JMETER_HOME}\\bin\\jmeter.bat -Jjmeter.save.saveservice.output_format=xml -n -t ${JMETER_REPO}\\Grupp1JMeter30\\JMeter\\PrestaShop30\\PrestashopTestplan_30.jmx -l ${JMETER_REPO}\\Grupp1JMeter30\\JMeter\\jmeter_report.jtl"
                 perfReport 'jmeter_report.jtl'
             }
         }
